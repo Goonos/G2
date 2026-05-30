@@ -2,93 +2,100 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>미니게임 랜드</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <title>강의실 미션 게임</title>
     <style>
-        :root {
-            --bg-color: #0c0c1e; /* 밤하늘 색 */
-            --pixel-pink: #ff6ac1;
-            --pixel-blue: #5ce1ff;
-            --pixel-yellow: #ffd300;
-        }
-
-        body {
-            font-family: 'Press Start 2P', cursive; /* 도트 폰트 */
-            text-align: center;
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            color: white;
-            /* 도트 놀이동산 배경 시뮬레이션 (CSS 그라데이션) */
-            background: 
-                /* 바닥 */
-                linear-gradient(to bottom, transparent 80%, #1a1a2e 80%),
-                /* 성 실루엣 (단순화) */
-                linear-gradient(45deg, #2a2a4a 25%, transparent 25%) 50px -50px,
-                linear-gradient(-45deg, #2a2a4a 25%, transparent 25%) 50px -50px,
-                linear-gradient(45deg, transparent 75%, #2a2a4a 75%),
-                linear-gradient(-45deg, transparent 75%, #2a2a4a 75%),
-                /* 밤하늘 */
-                radial-gradient(circle at 20% 20%, #3a3a5a 1px, transparent 1px),
-                radial-gradient(circle at 80% 40%, #fff 1px, transparent 1px),
-                var(--bg-color);
-            background-size: 100% 100%, 100px 100px, 100px 100px, 100px 100px, 100px 100px, 30px 30px, 50px 50px, 100% 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        h1 {
-            font-size: 24px;
-            text-shadow: 4px 4px 0px #000;
-            margin-bottom: 50px;
-            color: var(--pixel-yellow);
-        }
-
-        .menu {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        a {
-            text-decoration: none;
-            color: #000;
-            padding: 20px 40px;
-            width: 280px;
-            font-size: 14px;
-            position: relative;
-            display: inline-block;
-            transition: all 0.1s;
-            /* 도트 버튼 스타일 */
-            background-color: #fff;
-            border: 4px solid #000;
-            box-shadow: 6px 6px 0px #000;
-        }
-
-        /* 각 단계별 버튼 색상 */
-        .btn-1 { background-color: var(--pixel-blue); }
-        .btn-2 { background-color: var(--pixel-pink); }
-        .btn-3 { background-color: var(--pixel-yellow); }
-
-        a:hover {
-            transform: translate(2px, 2px);
-            box-shadow: 4px 4px 0px #000;
-        }
-
-        a:active {
-            transform: translate(6px, 6px);
-            box-shadow: 0px 0px 0px #000;
-        }
+        body { font-family: sans-serif; text-align: center; padding: 50px; background: #f0f0f0; }
+        .menu { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        a { text-decoration: none; background: #4CAF50; color: white; padding: 20px 40px; border-radius: 10px; width: 200px; font-weight: bold; }
     </style>
 </head>
 <body>
-    <h1>🏰미니게임 랜드🎡<br><span style="font-size: 12px; color: #fff;">난이도 선택</span></h1>
+    <h1>🤫 난이도를 선택하세요</h1>
     <div class="menu">
-        <a href="level1.html" class="btn-1">LEVEL 1<br><span style="font-size: 8px;">(EASY)</span></a>
-        <a href="level2.html" class="btn-2">LEVEL 2<br><span style="font-size: 8px;">(NORMAL)</span></a>
-        <a href="level3.html" class="btn-3">LEVEL 3<br><span style="font-size: 8px;">(HARD)</span></a>
+        <a href="level1.html">1단계 (단순 동작)</a>
+        <a href="level2.html">2단계 (사물 활용)</a>
+        <a href="level3.html">3단계 (대상 지정)</a>
     </div>
 </body>
 </html>
+
+### 2. level1.html (1단계)
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>1단계 미션</title>
+    <style>body { text-align: center; padding: 50px; } button { padding: 20px; font-size: 20px; }</style>
+</head>
+<body>
+    <h1>1단계: 혼자 하는 동작</h1>
+    <button onclick="draw()">동작 뽑기</button>
+    <h2 id="res" style="color: red; margin-top: 30px;"></h2>
+    <br><a href="index.html">돌아가기</a>
+    <script>
+        const v = ["신발 벗기", "바닥 눕기", "기지개 켜기", "눈 감고 10초 명상"];
+        function draw() {
+            document.getElementById('res').innerText = v[Math.floor(Math.random()*v.length)];
+        }
+    </script>
+</body>
+</html>
+
+### 3. level2.html (2단계)
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>2단계 미션</title>
+    <style>body { text-align: center; padding: 50px; } button { padding: 20px; font-size: 20px; }</style>
+</head>
+<body>
+    <h1>2단계: 사물 + 동작</h1>
+    <button onclick="draw()">미션 뽑기</button>
+    <h2 id="res" style="color: blue; margin-top: 30px;"></h2>
+    <br><a href="index.html">돌아가기</a>
+    <script>
+        const objs = ["볼펜", "지우개", "책", "텀블러"];
+        const verbs = ["머리 위에 올리기", "손가락으로 돌리기", "쓰다듬기"];
+        function draw() {
+            const o = objs[Math.floor(Math.random()*objs.length)];
+            const v = verbs[Math.floor(Math.random()*verbs.length)];
+            document.getElementById('res').innerText = `${o}을(를) ${v}`;
+        }
+    </script>
+</body>
+</html>
+
+### 4. level3.html (3단계)
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>3단계 미션</title>
+    <style>body { text-align: center; padding: 50px; } button { padding: 20px; font-size: 20px; }</style>
+</head>
+<body>
+    <h1>3단계: 대상 + 사물 + 동작</h1>
+    <button onclick="draw()">최종 미션 뽑기</button>
+    <h2 id="res" style="color: purple; margin-top: 30px;"></h2>
+    <br><a href="index.html">돌아가기</a>
+    <script>
+        const subs = ["옆 사람에게", "교수님 방향으로", "칠판에게"];
+        const objs = ["윙크", "손가락 하트", "엄지 척"];
+        const verbs = ["날리기", "보여주기", "시전하기"];
+        function draw() {
+            const s = subs[Math.floor(Math.random()*subs.length)];
+            const o = objs[Math.floor(Math.random()*objs.length)];
+            const v = verbs[Math.floor(Math.random()*verbs.length)];
+            document.getElementById('res').innerText = `${s} ${o}를 ${v}`;
+        }
+    </script>
+</body>
+</html>
+
+**업로드 방법:** GitHub 저장소에 `index.html`, `level1.html`, `level2.html`, `level3.html`이라는 이름으로 4개의 파일을 모두 올리시면 됩니다. 
+
+요청하신 강의실 미션 게임 프로젝트의 상세 가이드가 준비되었습니다! 내용을 확인해 보시고 추가로 궁금한 점이 있으면 말씀해 주세요.
