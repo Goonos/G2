@@ -2,161 +2,93 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>강의실 비밀 미션 게임</title>
+    <title>미니게임 랜드</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg-color: #0c0c1e; /* 밤하늘 색 */
+            --pixel-pink: #ff6ac1;
+            --pixel-blue: #5ce1ff;
+            --pixel-yellow: #ffd300;
+        }
+
         body {
-            font-family: 'Malgun Gothic', sans-serif;
+            font-family: 'Press Start 2P', cursive; /* 도트 폰트 */
             text-align: center;
-            background-color: #f4f4f9;
             margin: 0;
-            padding: 50px 20px;
+            padding: 0;
+            height: 100vh;
+            color: white;
+            /* 도트 놀이동산 배경 시뮬레이션 (CSS 그라데이션) */
+            background: 
+                /* 바닥 */
+                linear-gradient(to bottom, transparent 80%, #1a1a2e 80%),
+                /* 성 실루엣 (단순화) */
+                linear-gradient(45deg, #2a2a4a 25%, transparent 25%) 50px -50px,
+                linear-gradient(-45deg, #2a2a4a 25%, transparent 25%) 50px -50px,
+                linear-gradient(45deg, transparent 75%, #2a2a4a 75%),
+                linear-gradient(-45deg, transparent 75%, #2a2a4a 75%),
+                /* 밤하늘 */
+                radial-gradient(circle at 20% 20%, #3a3a5a 1px, transparent 1px),
+                radial-gradient(circle at 80% 40%, #fff 1px, transparent 1px),
+                var(--bg-color);
+            background-size: 100% 100%, 100px 100px, 100px 100px, 100px 100px, 100px 100px, 30px 30px, 50px 50px, 100% 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
+
         h1 {
-            color: #333;
+            font-size: 24px;
+            text-shadow: 4px 4px 0px #000;
+            margin-bottom: 50px;
+            color: var(--pixel-yellow);
         }
-        .hidden {
-            display: none;
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
         }
-        button {
-            padding: 12px 20px;
-            font-size: 16px;
-            font-weight: bold;
-            margin: 10px;
-            cursor: pointer;
-            border: none;
-            border-radius: 8px;
-            transition: 0.2s;
+
+        a {
+            text-decoration: none;
+            color: #000;
+            padding: 20px 40px;
+            width: 280px;
+            font-size: 14px;
+            position: relative;
+            display: inline-block;
+            transition: all 0.1s;
+            /* 도트 버튼 스타일 */
+            background-color: #fff;
+            border: 4px solid #000;
+            box-shadow: 6px 6px 0px #000;
         }
-        .btn-level {
-            background-color: #4CAF50;
-            color: white;
-            width: 80%;
+
+        /* 각 단계별 버튼 색상 */
+        .btn-1 { background-color: var(--pixel-blue); }
+        .btn-2 { background-color: var(--pixel-pink); }
+        .btn-3 { background-color: var(--pixel-yellow); }
+
+        a:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 4px 4px 0px #000;
         }
-        .btn-level:hover { background-color: #45a049; }
-        .btn-draw {
-            background-color: #008CBA;
-            color: white;
-            font-size: 18px;
-            padding: 15px 30px;
-        }
-        .btn-draw:hover { background-color: #007399; }
-        .btn-back {
-            background-color: #f44336;
-            color: white;
-        }
-        .btn-back:hover { background-color: #da190b; }
-        #result-box {
-            margin-top: 30px;
-            padding: 20px;
-            background-color: #ffffe0;
-            border-radius: 10px;
-            border: 2px dashed #f39c12;
-            min-height: 50px;
-        }
-        #result-text {
-            font-size: 22px;
-            font-weight: bold;
-            color: #d35400;
+
+        a:active {
+            transform: translate(6px, 6px);
+            box-shadow: 0px 0px 0px #000;
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <h1>🤫 강의실 비밀 미션</h1>
-    
-    <div id="screen-difficulty">
-        <p>지금 강의실인가요? 원하는 난이도를 선택하세요!</p>
-        <button class="btn-level" onclick="selectLevel(1)">1단계 (단순 행동)</button><br>
-        <button class="btn-level" onclick="selectLevel(2)">2단계 (사물 활용)</button><br>
-        <button class="btn-level" onclick="selectLevel(3)">3단계 (대상 지정)</button>
+    <h1>🏰미니게임 랜드🎡<br><span style="font-size: 12px; color: #fff;">난이도 선택</span></h1>
+    <div class="menu">
+        <a href="level1.html" class="btn-1">LEVEL 1<br><span style="font-size: 8px;">(EASY)</span></a>
+        <a href="level2.html" class="btn-2">LEVEL 2<br><span style="font-size: 8px;">(NORMAL)</span></a>
+        <a href="level3.html" class="btn-3">LEVEL 3<br><span style="font-size: 8px;">(HARD)</span></a>
     </div>
-
-    <div id="screen-game" class="hidden">
-        <h2 id="current-level-title"></h2>
-        <button class="btn-draw" id="btn-draw" onclick="drawMission()">동작 뽑기</button>
-        
-        <div id="result-box" class="hidden">
-            <span id="result-text"></span>
-        </div>
-
-        <br><br>
-        <button class="btn-back" onclick="goBack()">난이도 다시 선택</button>
-    </div>
-</div>
-
-<script>
-    let currentLevel = 1;
-
-    // 미션 데이터 (원하는 대로 내용을 수정/추가할 수 있습니다)
-    const missionData = {
-        level1: {
-            verbs: ["신발 조용히 벗기", "바닥에 눕기", "의자에서 기지개 켜기", "눈 감고 10초 명상하기", "허공에 주먹질하기", "소리 없이 박수 한 번 치기"]
-        },
-        level2: {
-            objects: ["볼펜을", "지우개를", "전공 서적을", "스마트폰을", "텀블러를", "필통을"],
-            verbs: ["머리 위에 5초간 올리기", "손가락으로 돌리기", "책상에 가볍게 두드리기", "아련한 눈빛으로 쳐다보기", "소중하게 쓰다듬기"]
-        },
-        level3: {
-            subjects: ["옆 사람에게", "앞 사람에게", "교수님(선생님)을 향해", "칠판을 향해", "창문 밖을 향해"],
-            objects: ["손가락 하트를", "보이지 않는 공을", "가벼운 윙크를", "소리 없는 따봉을", "메모지를"],
-            verbs: ["날리기", "보여주기", "조용히 시전하기", "은밀하게 건네기"]
-        }
-    };
-
-    function selectLevel(level) {
-        currentLevel = level;
-        document.getElementById('screen-difficulty').classList.add('hidden');
-        document.getElementById('screen-game').classList.remove('hidden');
-        document.getElementById('result-box').classList.add('hidden');
-        
-        document.getElementById('current-level-title').innerText = level + "단계 미션";
-        document.getElementById('btn-draw').innerText = level + "단계 동작 뽑기";
-    }
-
-    function goBack() {
-        document.getElementById('screen-game').classList.add('hidden');
-        document.getElementById('screen-difficulty').classList.remove('hidden');
-        document.getElementById('result-text').innerText = "";
-    }
-
-    // 배열에서 무작위로 하나를 뽑는 함수
-    function getRandomItem(array) {
-        return array[Math.floor(Math.random() * array.length)];
-    }
-
-    function drawMission() {
-        let result = "";
-        
-        if (currentLevel === 1) {
-            // 1단계: 동사 1개
-            result = getRandomItem(missionData.level1.verbs);
-        } else if (currentLevel === 2) {
-            // 2단계: 목적어 1개 + 동사 1개
-            const obj = getRandomItem(missionData.level2.objects);
-            const verb = getRandomItem(missionData.level2.verbs);
-            result = `${obj} ${verb}`;
-        } else if (currentLevel === 3) {
-            // 3단계: 주어 1개 + 목적어 1개 + 동사 1개
-            const sub = getRandomItem(missionData.level3.subjects);
-            const obj = getRandomItem(missionData.level3.objects);
-            const verb = getRandomItem(missionData.level3.verbs);
-            result = `${sub} ${obj} ${verb}`;
-        }
-
-        document.getElementById('result-box').classList.remove('hidden');
-        document.getElementById('result-text').innerText = result;
-    }
-</script>
-
 </body>
 </html>
