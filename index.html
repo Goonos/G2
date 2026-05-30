@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>강의실 미션 게임</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px; background: #f0f0f0; }
+        .menu { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+        a { text-decoration: none; background: #4CAF50; color: white; padding: 20px 40px; border-radius: 10px; width: 200px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>🤫 난이도를 선택하세요</h1>
+    <div class="menu">
+        <a href="level1.html">1단계 (단순 동작)</a>
+        <a href="level2.html">2단계 (사물 활용)</a>
+        <a href="level3.html">3단계 (대상 지정)</a>
+    </div>
+</body>
+</html>
+
+### 2. level1.html (1단계)
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>1단계 미션</title>
+    <style>body { text-align: center; padding: 50px; } button { padding: 20px; font-size: 20px; }</style>
+</head>
+<body>
+    <h1>1단계: 혼자 하는 동작</h1>
+    <button onclick="draw()">동작 뽑기</button>
+    <h2 id="res" style="color: red; margin-top: 30px;"></h2>
+    <br><a href="index.html">돌아가기</a>
+    <script>
+        const v = ["신발 벗기", "바닥 눕기", "기지개 켜기", "눈 감고 10초 명상"];
+        function draw() {
+            document.getElementById('res').innerText = v[Math.floor(Math.random()*v.length)];
+        }
+    </script>
+</body>
+</html>
+
+### 3. level2.html (2단계)
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>2단계 미션</title>
+    <style>body { text-align: center; padding: 50px; } button { padding: 20px; font-size: 20px; }</style>
+</head>
+<body>
+    <h1>2단계: 사물 + 동작</h1>
+    <button onclick="draw()">미션 뽑기</button>
+    <h2 id="res" style="color: blue; margin-top: 30px;"></h2>
+    <br><a href="index.html">돌아가기</a>
+    <script>
+        const objs = ["볼펜", "지우개", "책", "텀블러"];
+        const verbs = ["머리 위에 올리기", "손가락으로 돌리기", "쓰다듬기"];
+        function draw() {
+            const o = objs[Math.floor(Math.random()*objs.length)];
+            const v = verbs[Math.floor(Math.random()*verbs.length)];
+            document.getElementById('res').innerText = `${o}을(를) ${v}`;
+        }
+    </script>
+</body>
+</html>
+
+### 4. level3.html (3단계)
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>3단계 미션</title>
+    <style>body { text-align: center; padding: 50px; } button { padding: 20px; font-size: 20px; }</style>
+</head>
+<body>
+    <h1>3단계: 대상 + 사물 + 동작</h1>
+    <button onclick="draw()">최종 미션 뽑기</button>
+    <h2 id="res" style="color: purple; margin-top: 30px;"></h2>
+    <br><a href="index.html">돌아가기</a>
+    <script>
+        const subs = ["옆 사람에게", "교수님 방향으로", "칠판에게"];
+        const objs = ["윙크", "손가락 하트", "엄지 척"];
+        const verbs = ["날리기", "보여주기", "시전하기"];
+        function draw() {
+            const s = subs[Math.floor(Math.random()*subs.length)];
+            const o = objs[Math.floor(Math.random()*objs.length)];
+            const v = verbs[Math.floor(Math.random()*verbs.length)];
+            document.getElementById('res').innerText = `${s} ${o}를 ${v}`;
+        }
+    </script>
+</body>
+</html>
