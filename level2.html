@@ -6,56 +6,54 @@
     <style>
         body { font-family: sans-serif; text-align: center; padding: 50px; background: #fafafa; }
         button { padding: 15px 25px; font-size: 18px; margin: 10px; cursor: pointer; border-radius: 8px; border: none; font-weight: bold; }
-        .btn-draw { background: #008CBA; color: white; }
-        .btn-success { background: #4CAF50; color: white; }
-        .btn-success:disabled { background: #ccc; cursor: not-allowed; }
+        .btn-draw-2 { background: #008CBA; color: white; }
+        .btn-success-2 { background: #4CAF50; color: white; }
+        .btn-success-2:disabled { background: #ccc; cursor: not-allowed; }
         .btn-back { display: inline-block; margin-top: 30px; color: #555; text-decoration: none; }
-        #timer { font-size: 45px; font-weight: bold; color: #333; margin: 20px 0; }
-        #res { color: #3498db; margin-top: 20px; font-size: 28px; min-height: 40px; }
+        #timer-2 { font-size: 45px; font-weight: bold; color: #333; margin: 20px 0; }
+        #res-2 { color: #3498db; margin-top: 20px; font-size: 28px; min-height: 40px; }
     </style>
 </head>
 <body>
     <h1>2단계: 사물 + 동작</h1>
     <div>
-        <button class="btn-draw" onclick="draw()">2단계 동작 뽑기</button>
-        <button class="btn-success" id="btn-success" onclick="stopTimer()" disabled>정답!</button>
+        <button class="btn-draw-2" onclick="drawLevel2()">2단계 동작 뽑기</button>
+        <button class="btn-success-2" id="btn-success-2" onclick="stopTimerLevel2()" disabled>정답!</button>
     </div>
     
-    <div id="timer">0.00초</div>
-    <h2 id="res"></h2>
+    <div id="timer-2">0.00초</div>
+    <h2 id="res-2"></h2>
     
     <br><a href="index.html" class="btn-back">← 난이도 선택으로 돌아가기</a>
 
     <script>
-        const objs = ["볼펜", "지우개", "책", "텀블러", "스마트폰"];
-        const verbs = ["머리 위에 올리기", "손가락으로 돌리기", "아련하게 쳐다보기", "쓰다듬기"];
-        let timerInterval = null;
-        let startTime = 0;
+        const objs2 = ["볼펜을", "지우개를", "전공 서적을", "스마트폰을", "텀블러를", "필통을"];
+        const verbs2 = ["머리 위에 5초간 올리기", "손가락으로 돌리기", "책상에 가볍게 두드리기", "아련한 눈빛으로 쳐다보기", "소중하게 쓰다듬기"];
+        let timerInterval2 = null;
+        let startTime2 = 0;
 
-        function draw() {
-            // 사물 1개, 동작 1개 무작위 조합
-            const o = objs[Math.floor(Math.random() * objs.length)];
-            const v = verbs[Math.floor(Math.random() * verbs.length)];
-            document.getElementById('res').innerText = `${o}을(를) ${v}`;
+        function drawLevel2() {
+            const o = objs2[Math.floor(Math.random() * objs2.length)];
+            const v = verbs2[Math.floor(Math.random() * verbs2.length)];
+            document.getElementById('res-2').innerText = `${o} ${v}`;
             
-            // 타이머 초기화 및 재시작
-            clearInterval(timerInterval);
-            document.getElementById('timer').style.color = "#333";
-            document.getElementById('btn-success').disabled = false;
+            clearInterval(timerInterval2);
+            document.getElementById('timer-2').style.color = "#333";
+            document.getElementById('btn-success-2').disabled = false;
             
-            startTime = Date.now();
-            timerInterval = setInterval(() => {
-                const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(2);
-                document.getElementById('timer').innerText = elapsedTime + "초";
+            startTime2 = Date.now();
+            timerInterval2 = setInterval(() => {
+                const elapsedTime = ((Date.now() - startTime2) / 1000).toFixed(2);
+                document.getElementById('timer-2').innerText = elapsedTime + "초";
             }, 10);
         }
 
-        function stopTimer() {
-            if (timerInterval) {
-                clearInterval(timerInterval);
-                timerInterval = null;
-                document.getElementById('timer').style.color = "#2ecc71";
-                document.getElementById('btn-success').disabled = true;
+        function stopTimerLevel2() {
+            if (timerInterval2) {
+                clearInterval(timerInterval2);
+                timerInterval2 = null;
+                document.getElementById('timer-2').style.color = "#2ecc71";
+                document.getElementById('btn-success-2').disabled = true;
             }
         }
     </script>
